@@ -20,6 +20,7 @@ yum update -y
 yum install bash-completion vim wget git nc bind-utils traceroute tcpdump acpid strace -y
 
 # fit
+rpm --import /vagrant/setup/sevenval.key
 yum install fit14fitserver -y
 
 /opt/sevenval/fit14/lib/fit/bin/createCertificate.sh local14.sevenval-fit.com
