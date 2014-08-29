@@ -1,0 +1,4 @@
+.vagrant
+credentials
+projects/*
+!projects/_default
