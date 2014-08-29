@@ -1,0 +1,3 @@
+<urlmap mandatory="true">
+  <map path="/" source="fit://site/public/" />
+</urlmap>

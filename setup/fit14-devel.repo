@@ -1,0 +1,6 @@
+[fit14devel]
+name = Sevenval FIT Server 14 Devel for Red Hat Enterprise 7
+baseurl = https://CREDENTIALS@download.sevenval-fit.com/FIT_Server_Beta/14/packages/RHEL/$releasever/devel/$basearch
+enabled = 0
+gpgkey = https://download.sevenval-fit.com/FIT_Server/sevenval.key
+gpgcheck = 0

@@ -1,0 +1,6 @@
+<domains>
+  <domain name="local14.sevenval-fit.com" project="_path" site="_path">
+    <ports public-http="8080" listen-http="8080" public-https="8443" listen-https="8443" />
+	<ssl mode="decrypt" cert-file="conf/ssl/local14.sevenval-fit.com.crt" key-file="conf/ssl/local14.sevenval-fit.com.key" />
+  </domain>
+</domains>
