@@ -1,17 +1,75 @@
 <!DOCTYPE html>
 <html>
-	<head>
-  	<meta charset="utf-8" />
-		<title>Sevenval FIT 14</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	</head>
+  <!--
+    This is the basic example document of your Sevenval FIT installation.
+    If FIT is running correctly, proceed with:
+    http://developer.sevenval.com/start/tutorials/your-first-FIT-site.html
+    
+    Questions? hello@sevenval.com
+  -->  
+  <head>
+    <meta charset="utf-8"/>
+    <title>Sevenval FIT 14</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style type="text/css" media="screen">
+    body {
+      font-family: Helvetica;
+    }
+    * { text-align: center; }
+
+    .check {
+      background-color: #B5D2B2;
+      border-radius: 1em;
+      border-color: #3CA612;
+      border-style: solid;
+      border-width: 1px;
+      padding: 1em;
+    }
+
+    /*
+      This CSS part contains _Adaptation Instructions_ (http://developer.sevenval.com/docs/current/ress/AI.html)
+      and is removed by Sevenval FIT, because the testing condition always returns false.
+    */
+      
+    /*! ai-if="false()" */
+    @keyframes check {  
+        0% { color: red; }
+        100% { color: black; }
+    }
+    @-webkit-keyframes check {
+        0% { color: red; }
+        100% { color: black; }
+    }
+    .check {
+      background-color: red;
+        -webkit-animation: check 1s linear infinite;
+        -moz-animation: check 1s linear infinite;
+        animation: check 1s linear infinite;
+    } 
+    /*! ai-endif */
+    </style>
+  </head>
   <body>
-		<h1>Welcome to Sevenval FIT 14!</h1>
-
-		<p class="center">
-		  Your local Sevenval FIT 14 is up and running.
-		</p>
-
-		<p>You find more documentation at <a href="http://developer.sevenval.com">developer.sevenval.com</a></p>
-	</body>
+    <h1 class="check">
+      <!--
+        Replace the existing text with the current FIT Server version.
+        You find all values available in the _Delivery Context_ at http://developer.sevenval.com/docs/current/ress/DC.html
+      -->
+      <!--! ai-replace="concat('Welcome to Sevenval FIT ',server/fit-version,'!')"-->
+      Sevenval FIT14 is <em>NOT</em> running!
+      <!--! ai-end -->
+    </h1>
+    <p>
+      <!--
+        DOM based replacement, semantik _Adaptation Instructions_.
+        This instructions are processed by an intermediate proxy (Sevenval FIT) that implements adaptation instructions.
+      -->  
+        
+      <ai-value-of select="string('Horray! Your local Sevenval FIT 14 is up and running.')">
+        <strong>There is an error :(</strong>
+        Check your <a href="http://developer.sevenval.com/start/tutorials/developer-setup.html">developer setup</a>.
+      </ai-value-of>
+    </p>
+    <p>You find more documentation at <a href="http://developer.sevenval.com">developer.sevenval.com</a>.</p>
+  </body>
 </html>
