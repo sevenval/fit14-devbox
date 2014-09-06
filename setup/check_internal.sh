@@ -185,14 +185,6 @@ else
 	_printLine "$sMessage" 0
 fi
 
-# ====================================================================================================
-
-sMessage="File '/etc/profile.d/fit14.sh' exists"
-if [ -f "/etc/profile.d/fit14.sh" ]; then
-	_printLine "$sMessage" 1
-else
-	_printLine "$sMessage" 0
-fi
 
 # ====================================================================================================
 
@@ -217,15 +209,6 @@ fi
 
 # ====================================================================================================
 
-sMessage="Alias 'vi=vim' is writen into '/etc/profile.d/fit14.sh'"
-if grep -q "alias vi=vim" "/etc/profile.d/fit14.sh"; then
-	_printLine "$sMessage" 1
-else
-	_printLine "$sMessage" 0
-fi
-
-# ====================================================================================================
-
 iCheck=`/opt/sevenval/fit14/lib/fit/bin/curl -s 'http://192.168.56.14:8080/test.fit' | grep -c 'Overall: alive'`
 
 sMessage="Config check (calling /test.fit per IP and HTTP)"
@@ -237,7 +220,7 @@ fi
 
 # ====================================================================================================
 
-EXP_VERSION="14-0-0-c2"
+EXP_VERSION="14-0-0"
 FIT_VERSION=`fitadmin -v | head -n1`
 
 sMessage="FIT Version '$EXP_VERSION' (is: $FIT_VERSION)"

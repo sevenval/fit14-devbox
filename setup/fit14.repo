@@ -1,6 +1,0 @@
-[fit14]
-name = Sevenval FIT Server 14 Repo for Red Hat Enterprise 7
-baseurl = https://CREDENTIALS@download.sevenval-fit.com/fit-devbox/14/packages/RHEL/$releasever/14.0.0/$basearch
-enabled = 1
-gpgkey = https://download.sevenval-fit.com/FIT_Server/sevenval.key
-gpgcheck = 1
