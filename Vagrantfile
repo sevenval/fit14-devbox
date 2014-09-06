@@ -8,9 +8,8 @@ Vagrant.require_version ">= 1.6.0"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  #config.vm.box = "vagrant-fit14-devbox-14.0.0-1"
-  config.vm.box = "~/src/admin-tools/packer/fit14-devbox/boxes/vagrant-fit14-devbox-14.0.0-1.box"
-  #config.vm.box_url = "https://download.sevenval-fit.com/fit/images/vagrant-fit14-devbox-14.0.0-1.box"
+  config.vm.box = "vagrant-fit14-devbox-14.0.0-1"
+  config.vm.box_url = "https://download.sevenval-fit.com/fit-devbox/14/images/vagrant-fit14-devbox-14.0.0-1.box"
 
   config.vm.network "private_network", ip: "192.168.56.14"
   config.vm.hostname = "local14.sevenval-fit.com"
