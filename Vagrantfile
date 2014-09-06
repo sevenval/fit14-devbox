@@ -3,6 +3,9 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
+# 1.6.0 for run(always) provisioners
+Vagrant.require_version ">= 1.6.0"
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
