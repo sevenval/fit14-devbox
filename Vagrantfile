@@ -13,6 +13,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   config.vm.box_url = "https://download.sevenval-fit.com/vagrant/vagrant-fit14-centos-7.0-x86_64.box"
+  
+  # should you encounter problems with sahred folders or other things
+  # which are handled by the Guestadditions, enable the following.
+  # Otherwise it stays false to save time.
+  config.vbguest.auto_update = false
 
   config.vm.network "private_network", ip: "192.168.56.14"
   config.vm.hostname = "local14.sevenval-fit.com"
