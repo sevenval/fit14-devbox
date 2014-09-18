@@ -147,10 +147,10 @@ fi
 
 # ====================================================================================================
 
-sCheck=`sudo /opt/sevenval/fit14/bin/fitadmin extension list -s`
+sCheck=`sudo /opt/sevenval/fit14/bin/fitadmin config check -q`
 
-sMessage="CDR-Extension installed"
-if [ "$sCheck" = "cdr" ]; then
+sMessage="fitadmin config check"
+if `$sCheck`; then
 	_printLine "$sMessage" 1
 else
 	_printLine "$sMessage" 0
@@ -220,7 +220,7 @@ fi
 
 # ====================================================================================================
 
-EXP_VERSION="14-0-0"
+EXP_VERSION="14-0-1-c1"
 FIT_VERSION=`fitadmin -v | head -n1`
 
 sMessage="FIT Version '$EXP_VERSION' (is: $FIT_VERSION)"
