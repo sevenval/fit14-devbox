@@ -4,7 +4,8 @@
 VAGRANTFILE_API_VERSION = "2"
 
 # 1.6.0 for run(always) provisioners
-Vagrant.require_version ">= 1.6.0"
+# 1.6.5 to fix centos7 networking
+Vagrant.require_version ">= 1.6.5"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
