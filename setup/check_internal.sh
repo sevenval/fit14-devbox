@@ -46,19 +46,8 @@ fi
 
 # ====================================================================================================
 
-sMessage="File '/etc/yum.repos.d/fit-devel14.repo' exists"
-if [ -f "/etc/yum.repos.d/fit-devel14.repo" ]; then
-	_printLine "$sMessage" 1
-else
-	_printLine "$sMessage" 0
-fi
-
-# ====================================================================================================
-
-iCheck=`yum repolist enabled --disablerepo=* --enablerepo=fit14 -c /etc/yum.repos.d/ | grep -c 'fit14'`
-
-sMessage="YUM repository 'fit14' is enabled"
-if [ "$iCheck" -gt 0 ]; then
+sMessage="File '/etc/yum.repos.d/fit14-devel.repo' exists"
+if [ -f "/etc/yum.repos.d/fit14-devel.repo" ]; then
 	_printLine "$sMessage" 1
 else
 	_printLine "$sMessage" 0
@@ -76,7 +65,7 @@ fi
 
 # ====================================================================================================
 
-aTools=(bash-completion libtool-ltdl vim wget git nc bind-utils traceroute tcpdump acpid strace)
+aTools=(bash-completion libtool-ltdl vim wget git nc bind-utils traceroute tcpdump strace)
 
 sOutput=`yum list installed`
 
