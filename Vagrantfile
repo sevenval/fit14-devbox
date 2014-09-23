@@ -9,9 +9,9 @@ Vagrant.require_version ">= 1.6.5"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "vagrant-fit14-devbox-14.0.1-c2"
-  config.vm.box_url = "https://download.sevenval-fit.com/fit-devbox/14/images/vagrant-fit14-devbox-14.0.1-c1-2.box"
-  config.vm.box_download_checksum = "832cd4ad34189e0a1468d8f3346e0af9f3641ccf"
+  config.vm.box = "vagrant-fit14-devbox-14.0.1-c2-1"
+  config.vm.box_url = "https://download.sevenval-fit.com/fit-devbox/14/images/vagrant-fit14-devbox-14.0.1-c2-1.box"
+  config.vm.box_download_checksum = "2b097e20159f4cebd769c03a747950ff28f8803c"
   config.vm.box_download_checksum_type = "sha1"
 
   config.vm.network "private_network", ip: "192.168.56.14"

@@ -209,7 +209,7 @@ fi
 
 # ====================================================================================================
 
-EXP_VERSION="14-0-1-c1"
+EXP_VERSION="14-0-1-c2"
 FIT_VERSION=`fitadmin -v | head -n1`
 
 sMessage="FIT Version '$EXP_VERSION' (is: $FIT_VERSION)"
