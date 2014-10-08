@@ -1,2 +1,2 @@
 # Force LF line ending on these files
-*.sh eol=lf
+* text eol=lf
