@@ -13,8 +13,8 @@ else
 fi
 
 if [ -f /vagrant/setup/switch-version-internal.sh ]; then
-	sudo bash -x /vagrant/setup/switch-version-internal.sh $VERSION
+	sudo bash /vagrant/setup/switch-version-internal.sh $VERSION
 else
-	vagrant ssh -c "sudo bash -x /vagrant/setup/switch-version-internal.sh $VERSION"
+	vagrant ssh -c "sudo bash /vagrant/setup/switch-version-internal.sh $VERSION"
 fi
 
