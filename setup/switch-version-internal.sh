@@ -7,7 +7,7 @@ REMOVE="`rpm -qa | grep ^fit14`" || true
 if [ -n "$REMOVE" ]; then
 	rpm -e $REMOVE
 fi
-#yum clean all --enablerepo=* 
+yum clean all --disablerepo=* --enablerepo=fit14devel --enablerepo=fit14nightly --enablerepo=fit14stable
 yum install --disablerepo=* --enablerepo=$1 fit14fitserver 
 cd /opt/sevenval/fit14/conf
 for i in *; do
