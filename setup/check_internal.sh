@@ -46,12 +46,14 @@ fi
 
 # ====================================================================================================
 
-sMessage="File '/etc/yum.repos.d/fit14-devel.repo' exists"
-if [ -f "/etc/yum.repos.d/fit14-devel.repo" ]; then
-	_printLine "$sMessage" 1
-else
-	_printLine "$sMessage" 0
-fi
+for repo in fit14-devel fit14-nightly fit14-stable; do
+	sMessage="File '/etc/yum.repos.d/$repo.repo' exists"
+	if [ -f "/etc/yum.repos.d/$repo.repo" ]; then
+		_printLine "$sMessage" 1
+	else
+		_printLine "$sMessage" 0
+	fi
+done
 
 # ====================================================================================================
 
