@@ -7,8 +7,10 @@ REMOVE="`rpm -qa | grep ^fit14`" || true
 if [ -n "$REMOVE" ]; then
 	rpm -e $REMOVE
 fi
-yum clean all --disablerepo=* --enablerepo=fit14devel --enablerepo=fit14nightly --enablerepo=fit14stable
-yum install --disablerepo=* --enablerepo=$1 fit14fitserver 
+yum clean all --disablerepo=* --enablerepo=fit14*
+yum-config-manager --quiet --disable fit14* >/dev/null
+yum-config-manager --quiet --enable $1 >/dev/null
+yum install fit14fitserver 
 cd /opt/sevenval/fit14/conf
 for i in *; do
 	if [ -f "$i.rpmsave" ]; then
@@ -18,5 +20,5 @@ done
 /opt/sevenval/fit14/bin/fitadmin config generate
 /opt/sevenval/fit14/sbin/apachectl start
 /opt/sevenval/fit14/sbin/phpfpmctl start
-/opt/sevenval/fit14/bin/fitadmin -v
 
+/vagrant/setup/which-version.sh
