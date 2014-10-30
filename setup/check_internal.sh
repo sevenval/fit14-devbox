@@ -46,17 +46,6 @@ fi
 
 # ====================================================================================================
 
-for repo in fit14-devel fit14-nightly fit14-stable; do
-	sMessage="File '/etc/yum.repos.d/$repo.repo' exists"
-	if [ -f "/etc/yum.repos.d/$repo.repo" ]; then
-		_printLine "$sMessage" 1
-	else
-		_printLine "$sMessage" 0
-	fi
-done
-
-# ====================================================================================================
-
 sMessage="File '/etc/motd' exists"
 if [ -f "/etc/motd" ]; then
 	_printLine "$sMessage" 1
@@ -67,7 +56,7 @@ fi
 
 # ====================================================================================================
 
-aTools=(bash-completion libtool-ltdl vim wget git nc bind-utils traceroute tcpdump strace)
+aTools=(bash-completion wget git nc bind-utils traceroute tcpdump strace)
 
 sOutput=`yum list installed`
 
