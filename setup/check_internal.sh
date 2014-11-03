@@ -19,7 +19,7 @@ fi
 
 # ====================================================================================================
 
-source "$sCurrentDir/functions.sh"
+source /vagrant/setup/functions.sh
 
 # ====================================================================================================
 
@@ -46,15 +46,6 @@ fi
 
 # ====================================================================================================
 
-sMessage="File '/etc/yum.repos.d/fit14-devel.repo' exists"
-if [ -f "/etc/yum.repos.d/fit14-devel.repo" ]; then
-	_printLine "$sMessage" 1
-else
-	_printLine "$sMessage" 0
-fi
-
-# ====================================================================================================
-
 sMessage="File '/etc/motd' exists"
 if [ -f "/etc/motd" ]; then
 	_printLine "$sMessage" 1
@@ -65,7 +56,7 @@ fi
 
 # ====================================================================================================
 
-aTools=(bash-completion libtool-ltdl vim wget git nc bind-utils traceroute tcpdump strace)
+aTools=(bash-completion wget git nc bind-utils traceroute tcpdump strace)
 
 sOutput=`yum list installed`
 
@@ -209,7 +200,7 @@ fi
 
 # ====================================================================================================
 
-EXP_VERSION="14-0-1"
+EXP_VERSION="14-0-2"
 FIT_VERSION=`sudo /opt/sevenval/fit14/bin/fitadmin -v | head -n1`
 
 sMessage="FIT Version '$EXP_VERSION' (is: $FIT_VERSION)"
