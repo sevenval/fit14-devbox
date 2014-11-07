@@ -3,13 +3,13 @@
 if [ -n "$1" ]; then
 	VERSION=$1
 else
-	read -p '(n)ightly (d)evel (a)lpha (s)table? ' VERSION
+	read -p '(n)ightly (d)evel (b)eta (s)table? ' VERSION
 	case "$VERSION" in
-	"a") VERSION=alpha ;;
 	"n") VERSION=nightly ;;
 	"d") VERSION=devel ;;
+	"b") VERSION=beta ;;
 	"s") VERSION=stable ;;
-	*) echo "n/d/a/s" >&2; exit 1;;
+	*) echo "n/d/b/s" >&2; exit 1;;
 	esac
 fi
 
