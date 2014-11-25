@@ -17,8 +17,6 @@ rescue
 	download_creds = ""
 end
 
-# negative test für ci job (i.e. breaks credentials)
-download_creds = ""
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
