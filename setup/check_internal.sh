@@ -56,7 +56,7 @@ fi
 
 # ====================================================================================================
 
-aTools=(bash-completion wget git nc bind-utils traceroute tcpdump strace)
+aTools=(bash-completion wget nc bind-utils traceroute tcpdump strace)
 
 sOutput=`yum list installed`
 
