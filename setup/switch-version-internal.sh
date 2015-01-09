@@ -25,7 +25,8 @@ name = Sevenval FIT Server 14 Channel ${CHANNEL}
 baseurl = https://download.sevenval-fit.com/FIT_Server_Beta/14/packages/RHEL/7/${VERSION}/x86_64
 enabled = 1
 gpgkey = https://download.sevenval-fit.com/FIT_Server/sevenval.key
-gpgcheck = 0" > /etc/yum.repos.d/fit14-tmp.repo
+gpgcheck = 0
+proxy = _none_" > /etc/yum.repos.d/fit14-tmp.repo
 fi
 
 yum-config-manager --quiet --enable ${CHANNEL} >/dev/null
