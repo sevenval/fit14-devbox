@@ -56,7 +56,7 @@ fi
 
 # ====================================================================================================
 
-aTools=(bash-completion wget git nc bind-utils traceroute tcpdump strace)
+aTools=(bash-completion wget nc bind-utils traceroute tcpdump strace)
 
 sOutput=`yum list installed`
 
@@ -200,7 +200,7 @@ fi
 
 # ====================================================================================================
 
-EXP_VERSION="14-0-3"
+EXP_VERSION="14-0-4"
 FIT_VERSION=`sudo /opt/sevenval/fit14/bin/fitadmin -v | head -n1`
 
 sMessage="FIT Version '$EXP_VERSION' (is: $FIT_VERSION)"
