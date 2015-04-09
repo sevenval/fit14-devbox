@@ -56,24 +56,6 @@ fi
 
 # ====================================================================================================
 
-aTools=(bash-completion wget nc bind-utils traceroute tcpdump strace)
-
-sOutput=`yum list installed`
-
-for sTool in "${aTools[@]}"
-do
-	iCheck=`echo $sOutput | grep -c $sTool`
-
-	sMessage="Check package '$sTool'"
-	if [ "$iCheck" -gt 0 ]; then
-		_printLine "$sMessage" 1
-	else
-		_printLine "$sMessage" 0
-	fi
-done
-
-# ====================================================================================================
-
 aCertFiles=(crt csr key)
 
 for sCertFile in "${aCertFiles[@]}"
