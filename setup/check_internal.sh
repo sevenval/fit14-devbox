@@ -56,24 +56,6 @@ fi
 
 # ====================================================================================================
 
-aTools=(bash-completion wget nc bind-utils traceroute tcpdump strace)
-
-sOutput=`yum list installed`
-
-for sTool in "${aTools[@]}"
-do
-	iCheck=`echo $sOutput | grep -c $sTool`
-
-	sMessage="Check package '$sTool'"
-	if [ "$iCheck" -gt 0 ]; then
-		_printLine "$sMessage" 1
-	else
-		_printLine "$sMessage" 0
-	fi
-done
-
-# ====================================================================================================
-
 aCertFiles=(crt csr key)
 
 for sCertFile in "${aCertFiles[@]}"
@@ -200,7 +182,7 @@ fi
 
 # ====================================================================================================
 
-EXP_VERSION="14-0-5"
+EXP_VERSION="14-0-6"
 FIT_VERSION=`sudo /opt/sevenval/fit14/bin/fitadmin -v | head -n1`
 
 sMessage="FIT Version '$EXP_VERSION' (is: $FIT_VERSION)"
