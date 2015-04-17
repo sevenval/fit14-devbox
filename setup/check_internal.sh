@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -e
 
 # ====================================================================================================
 
@@ -23,13 +23,8 @@ source /vagrant/setup/functions.sh
 
 # ====================================================================================================
 
-sTemp=$( { time host 'example.com' > /dev/null; } 2>&1 )
-
-iTime=`echo $sTemp | cut -d " " -f 2`
-iTime=$(echo "$iTime 1000" | awk '{printf "%.0f \n", $1*$2}')
-
-sMessage="DNS lookup speed"
-if [ "$iTime" -lt 2000 ]; then
+sMessage="Connectivity http://example.com/ (DNS and routing)"
+if $(curl -f -s --max-time 3 http://example.com/ >/dev/null); then
 	_printLine "$sMessage" 1
 else
 	_printLine "$sMessage" 0
