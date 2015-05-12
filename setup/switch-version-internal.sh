@@ -7,6 +7,12 @@ trap 'echo "ERROR: could not install new FIT packages. try switching back to sta
 VERSION=$1
 CHANNEL=fit14${VERSION#14}
 
+#27343 read credentials for beta users
+CREDENTIALS=$(cat /vagrant/credentials 2>/dev/null)
+if [ -n "$CREDENTIALS" ]; then
+	CREDENTIALS="${CREDENTIALS}@"
+fi
+
 echo "switching FIT installation to $VERSION"
 REMOVE="`rpm -qa | grep ^fit14`" || true
 if [ -n "$REMOVE" ]; then
@@ -22,7 +28,7 @@ if ! yum-config-manager --disablerepo=* --enablerepo=${CHANNEL} 2>&1 >/dev/null;
 
 	echo "[${CHANNEL}]
 name = Sevenval FIT Server 14 Channel ${CHANNEL}
-baseurl = https://download.sevenval-fit.com/FIT_Server_Beta/14/packages/RHEL/7/${VERSION}/x86_64
+baseurl = https://${CREDENTIALS}download.sevenval-fit.com/FIT_Server_Beta/14/packages/RHEL/7/${VERSION}/x86_64
 enabled = 1
 gpgkey = https://download.sevenval-fit.com/FIT_Server/sevenval.key
 gpgcheck = 0
