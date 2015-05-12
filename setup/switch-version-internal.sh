@@ -38,6 +38,8 @@ fi
 yum-config-manager --quiet --enable ${CHANNEL} >/dev/null
 yum --disableplugin=fastestmirror install -y fit14fitserver
 
+#27343 don't store credentials inside the box
+sed -i '/baseurl.*@/ s/https:\/\/.*\?@/https:\/\//' /etc/yum.repos.d/fit14-tmp.repo
 
 cd /opt/sevenval/fit14/conf
 
