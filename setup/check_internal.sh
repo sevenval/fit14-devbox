@@ -166,7 +166,7 @@ fi
 
 # ====================================================================================================
 
-iCheck=`/opt/sevenval/fit14/lib/fit/bin/curl -s 'http://192.168.56.14:8080/test.fit' | grep -c 'Overall: alive'`
+iCheck=`curl -s 'http://192.168.56.14:8080/test.fit' | grep -c 'Overall: alive'`
 
 sMessage="Config check (calling /test.fit per IP and HTTP)"
 if [ "$iCheck" -gt 0 ]; then
