@@ -42,7 +42,7 @@ proxy = _none_" > /etc/yum.repos.d/fit14-tmp.repo
 fi
 
 yum-config-manager --quiet --enable ${CHANNEL} >/dev/null
-yum --disablerepo=* --enablerepo=fit14* --disableplugin=fastestmirror install -y fit14fitserver
+yum --enablerepo=fit14* --disableplugin=fastestmirror install -y fit14fitserver
 
 #27343 don't store credentials inside the box
 sed -i '/baseurl.*@/ s/https:\/\/.*\?@/https:\/\//' /etc/yum.repos.d/fit14-tmp.repo
