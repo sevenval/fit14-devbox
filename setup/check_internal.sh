@@ -166,7 +166,7 @@ fi
 
 # ====================================================================================================
 
-iCheck=`/opt/sevenval/fit14/lib/fit/bin/curl -s 'http://192.168.56.14:8080/test.fit' | grep -c 'Overall: alive'`
+iCheck=`curl -s 'http://192.168.56.14:8080/test.fit' | grep -c 'Overall: alive'`
 
 sMessage="Config check (calling /test.fit per IP and HTTP)"
 if [ "$iCheck" -gt 0 ]; then
@@ -177,7 +177,7 @@ fi
 
 # ====================================================================================================
 
-EXP_VERSION="14-0-8"
+EXP_VERSION="14-1-0"
 FIT_VERSION=`sudo /opt/sevenval/fit14/bin/fitadmin -v | head -n1`
 
 sMessage="FIT Version '$EXP_VERSION' (is: $FIT_VERSION)"
