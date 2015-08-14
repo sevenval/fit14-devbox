@@ -18,3 +18,10 @@ _printLine() {
         fi
     fi
 }
+
+_shutdown() {
+    status="${PIPESTATUS[0]}"
+    if [ "$status" != "0" ];then
+        echo "FAILED with $status in $sMessage";
+    fi
+}
