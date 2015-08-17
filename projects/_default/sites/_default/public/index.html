@@ -28,6 +28,9 @@
       border-width: 1px;
       padding: 1em;
     }
+	.invisible {
+		color: #f8f8f8;
+	}
 
     /*
       This CSS part contains _Adaptation Instructions_ (http://developer.sevenval.com/docs/current/ress/AI.html)
@@ -74,5 +77,6 @@
       </ai-value-of>
     </p>
     <p>You find more documentation at <a href="http://developer.sevenval.com">developer.sevenval.com</a>.</p>
+	<p class="invisible"><ai-value-of select="concat('Project: ', server/project, ' Site: ', server/site)"/></p>
   </body>
 </html>

@@ -43,17 +43,30 @@ else
 fi
 
 # ====================================================================================================
-iCheck=`curl -m 3 -k -s 'https://_default.local14.sevenval-fit.com/' | grep -c 'Welcome'`
+sMessage="Domain check (*.local14.sevenval-fit.com:443 _default)"
+iCheck=`curl -m 3 -k -s 'https://anything-falls-back-to-default.local14.sevenval-fit.com/' | grep -c 'Project: _default Site: _default'`
+if [ "$iCheck" -gt 0 ]; then
+	_printLine "$sMessage" 1
+else
+	_printLine "$sMessage" 0
+fi
+
+# ====================================================================================================
+sMessage="Domain check (*.local14.sevenval-fit.com:80)"
+
+if [ ! -d ../projects/_default/sites/checkexttestsite ]; then (cd ../projects/_default/sites/ && ln -s _default checkexttestsite); fi
+if [ ! -d ../projects/checkexttestproject ]; then (cd ../projects/ && ln -s _default checkexttestproject); fi
+
+iCheck=`curl -L -m 3 -k -s 'http://checkexttestproject.local14.sevenval-fit.com/checkexttestsite' | grep -c 'Project: checkexttestproject Site: checkexttestsite'`
+if [ "$iCheck" -gt 0 ]; then
+	_printLine "$sMessage" 1
+else
+	_printLine "$sMessage" 0
+fi
+
+# ====================================================================================================
 sMessage="Domain check (*.local14.sevenval-fit.com:443)"
-if [ "$iCheck" -gt 0 ]; then
-	_printLine "$sMessage" 1
-else
-	_printLine "$sMessage" 0
-fi
-
-# ====================================================================================================
-iCheck=`curl -m 3 -k -s 'https://_default._default.local14.sevenval-fit.com/' | grep -c 'Welcome'`
-sMessage="Domain check (*.*.local14.sevenval-fit.com:443)"
+iCheck=`curl -L -m 3 -k -s 'https://checkexttestproject.local14.sevenval-fit.com/checkexttestsite' | grep -c 'Project: checkexttestproject Site: checkexttestsite'`
 if [ "$iCheck" -gt 0 ]; then
 	_printLine "$sMessage" 1
 else
@@ -62,6 +75,19 @@ fi
 
 # ====================================================================================================
 sMessage="Domain check (*.*.local14.sevenval-fit.com:443)"
+iCheck=`curl -m 3 -k -s 'https://checkexttestsite.checkexttestproject.local14.sevenval-fit.com/' | grep -c 'Project: checkexttestproject Site: checkexttestsite'`
+if [ "$iCheck" -gt 0 ]; then
+	_printLine "$sMessage" 1
+else
+	_printLine "$sMessage" 0
+fi
+
+rm -f  ../projects/_default/sites/checkexttestsite
+rm -f ../projects/checkexttestproject
+
+
+# ====================================================================================================
+sMessage="Domain check 404 (*.*.local14.sevenval-fit.com:443)"
 if curl -m 3 -k -s -f 'https://not.there.local14.sevenval-fit.com/' > /dev/null; then
 	_printLine "$sMessage" 0
 else
