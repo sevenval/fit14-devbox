@@ -1,5 +1,6 @@
 #! /bin/bash -e
 
+
 # ====================================================================================================
 
 cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -7,6 +8,7 @@ cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 declare -i failed
 
 source functions.sh
+trap _shutdown EXIT
 
 # ====================================================================================================
 
@@ -25,8 +27,8 @@ fi
 
 # ====================================================================================================
 
-iCheck=`curl -m 3 -k -s 'http://local14.sevenval-fit.com/' | grep -c 'Welcome'`
 sMessage="Domain check (local14.sevenval-fit.com:80)"
+iCheck=`curl -m 3 -k -s 'http://local14.sevenval-fit.com/' | grep -c 'Welcome'`
 if [ "$iCheck" -gt 0 ]; then
 	_printLine "$sMessage" 1
 else
@@ -34,8 +36,8 @@ else
 fi
 
 # ====================================================================================================
-iCheck=`curl -m 3 -k -s 'https://local14.sevenval-fit.com/' | grep -c 'Welcome'`
 sMessage="Domain check (local14.sevenval-fit.com:443)"
+iCheck=`curl -m 3 -k -s 'https://local14.sevenval-fit.com/' | grep -c 'Welcome'`
 if [ "$iCheck" -gt 0 ]; then
 	_printLine "$sMessage" 1
 else
@@ -96,9 +98,8 @@ fi
 
 # ====================================================================================================
 
-iCheck=`curl -m 3 -k -s 'http://local14.sevenval-fit.com:8080/test.fit' | grep -c 'Overall: alive'`
-
 sMessage="Config check (calling /test.fit per hostname and HTTP)"
+iCheck=`curl -m 3 -k -s 'http://local14.sevenval-fit.com:8080/test.fit' | grep -c 'Overall: alive'`
 if [ "$iCheck" -gt 0 ]; then
 	_printLine "$sMessage" 1
 else
@@ -106,6 +107,8 @@ else
 fi
 
 # ====================================================================================================
+
+sMessage="Config check (calling /test.fit per hostname and HTTPS)"
 
 declare -i iAccessLogBeforeLines=`wc -l ../logs/access_log | awk '{print $1}'`
 declare -i iFPMLogBeforeLines=`wc -l ../logs/phpfpm_access_log | awk '{print $1}'`
@@ -116,7 +119,6 @@ sleep 1
 declare -i iAccessLogAfterLines=`wc -l ../logs/access_log | awk '{print $1}'`
 declare -i iFPMLogAfterLines=`wc -l ../logs/phpfpm_access_log | awk '{print $1}'`
 
-sMessage="Config check (calling /test.fit per hostname and HTTPS)"
 if [ "$iCheck" -gt 0 ]; then
 	_printLine "$sMessage" 1
 else
