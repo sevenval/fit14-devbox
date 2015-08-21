@@ -7,6 +7,7 @@ cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 declare -i failed
 
 source functions.sh
+trap _shutdown EXIT
 
 # ====================================================================================================
 
@@ -25,9 +26,8 @@ fi
 
 # ====================================================================================================
 
-iCheck=`curl -m 3 -k -s 'http://local14.sevenval-fit.com:8080/test.fit' | grep -c 'Overall: alive'`
-
-sMessage="Config check (calling /test.fit per hostname and HTTP)"
+sMessage="Domain check (local14.sevenval-fit.com:80)"
+iCheck=`curl -m 3 -k -s 'http://local14.sevenval-fit.com/' | grep -c 'Welcome'`
 if [ "$iCheck" -gt 0 ]; then
 	_printLine "$sMessage" 1
 else
@@ -35,6 +35,79 @@ else
 fi
 
 # ====================================================================================================
+sMessage="Domain check (local14.sevenval-fit.com:443)"
+iCheck=`curl -m 3 -k -s 'https://local14.sevenval-fit.com/' | grep -c 'Welcome'`
+if [ "$iCheck" -gt 0 ]; then
+	_printLine "$sMessage" 1
+else
+	_printLine "$sMessage" 0
+fi
+
+# ====================================================================================================
+sMessage="Domain check (*.local14.sevenval-fit.com:443 _default)"
+iCheck=`curl -m 3 -k -s 'https://anything-falls-back-to-default.local14.sevenval-fit.com/' | grep -c 'Project: _default Site: _default'`
+if [ "$iCheck" -gt 0 ]; then
+	_printLine "$sMessage" 1
+else
+	_printLine "$sMessage" 0
+fi
+
+# ====================================================================================================
+sMessage="Domain check (*.local14.sevenval-fit.com:80)"
+
+if [ ! -d ../projects/_default/sites/checkexttestsite ]; then (cd ../projects/_default/sites/ && ln -s _default checkexttestsite); fi
+if [ ! -d ../projects/checkexttestproject ]; then (cd ../projects/ && ln -s _default checkexttestproject); fi
+
+iCheck=`curl -L -m 3 -k -s 'http://checkexttestproject.local14.sevenval-fit.com/checkexttestsite' | grep -c 'Project: checkexttestproject Site: checkexttestsite'`
+if [ "$iCheck" -gt 0 ]; then
+	_printLine "$sMessage" 1
+else
+	_printLine "$sMessage" 0
+fi
+
+# ====================================================================================================
+sMessage="Domain check (*.local14.sevenval-fit.com:443)"
+iCheck=`curl -L -m 3 -k -s 'https://checkexttestproject.local14.sevenval-fit.com/checkexttestsite' | grep -c 'Project: checkexttestproject Site: checkexttestsite'`
+if [ "$iCheck" -gt 0 ]; then
+	_printLine "$sMessage" 1
+else
+	_printLine "$sMessage" 0
+fi
+
+# ====================================================================================================
+sMessage="Domain check (*.*.local14.sevenval-fit.com:443)"
+iCheck=`curl -m 3 -k -s 'https://checkexttestsite.checkexttestproject.local14.sevenval-fit.com/' | grep -c 'Project: checkexttestproject Site: checkexttestsite'`
+if [ "$iCheck" -gt 0 ]; then
+	_printLine "$sMessage" 1
+else
+	_printLine "$sMessage" 0
+fi
+
+rm -f  ../projects/_default/sites/checkexttestsite
+rm -f ../projects/checkexttestproject
+
+
+# ====================================================================================================
+sMessage="Domain check 404 (*.*.local14.sevenval-fit.com:443)"
+if curl -m 3 -k -s -f 'https://not.there.local14.sevenval-fit.com/' > /dev/null; then
+	_printLine "$sMessage" 0
+else
+	_printLine "$sMessage" 1
+fi
+
+# ====================================================================================================
+
+sMessage="Config check (calling /test.fit per hostname and HTTP)"
+iCheck=`curl -m 3 -k -s 'http://local14.sevenval-fit.com:8080/test.fit' | grep -c 'Overall: alive'`
+if [ "$iCheck" -gt 0 ]; then
+	_printLine "$sMessage" 1
+else
+	_printLine "$sMessage" 0
+fi
+
+# ====================================================================================================
+
+sMessage="Config check (calling /test.fit per hostname and HTTPS)"
 
 declare -i iAccessLogBeforeLines=`wc -l ../logs/access_log | awk '{print $1}'`
 declare -i iFPMLogBeforeLines=`wc -l ../logs/phpfpm_access_log | awk '{print $1}'`
@@ -45,7 +118,6 @@ sleep 1
 declare -i iAccessLogAfterLines=`wc -l ../logs/access_log | awk '{print $1}'`
 declare -i iFPMLogAfterLines=`wc -l ../logs/phpfpm_access_log | awk '{print $1}'`
 
-sMessage="Config check (calling /test.fit per hostname and HTTPS)"
 if [ "$iCheck" -gt 0 ]; then
 	_printLine "$sMessage" 1
 else
