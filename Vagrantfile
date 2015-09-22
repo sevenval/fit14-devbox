@@ -27,8 +27,8 @@ config.vm.box_download_checksum_type = "sha1"
   config.vm.network "private_network", ip: "192.168.56.14"
   config.vm.hostname = "local14.sevenval-fit.com"
 
-  config.vm.synced_folder "projects", "/var/lib/fit14/projects", :mount_options => ["uid=1000,gid=1000"]
-  config.vm.synced_folder "logs", "/var/log/fit14/", :mount_options => ["uid=1000,gid=1000"]
+  config.vm.synced_folder "projects", "/var/lib/fit14/projects", :mount_options => ["uid=1001,gid=1001"]
+  config.vm.synced_folder "logs", "/var/log/fit14/", :mount_options => ["uid=1001,gid=1001"]
 
   config.vm.provision :shell, :path => "setup/start-services.sh", run: "always"
 
