@@ -77,7 +77,7 @@ do
 	fi
 
 	sMessage="Owner of '$sConfFile' is 'fit/fit-data'"
-	if [ `stat -c "%U:%G" /opt/sevenval/fit14/conf/$sConfFile` = "fit:fit-data" ]; then
+	if [ `stat -c "%u:%g" /opt/sevenval/fit14/conf/$sConfFile` = "1000:1000" ]; then
 		_printLine "$sMessage" 1
 	else
 		_printLine "$sMessage" 0
