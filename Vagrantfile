@@ -19,16 +19,16 @@ end
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-config.vm.box = "vagrant-fit14-devbox-14.1.2-0"
-config.vm.box_url = "https://#{download_creds}download.sevenval-fit.com/fit-devbox/14/images/vagrant-fit14-devbox-14.1.2-0.box"
-config.vm.box_download_checksum = "3f13673eaeb315f6b67bc29af69a75cb3f8766ed"
+config.vm.box = "vagrant-fit14-devbox-14.1.3-c1-0"
+config.vm.box_url = "https://#{download_creds}download.sevenval-fit.com/fit-devbox/14/images/vagrant-fit14-devbox-14.1.3-c1-0.box"
+config.vm.box_download_checksum = "4791035c730a1070871cc53e85a8e0da3964a72d"
 config.vm.box_download_checksum_type = "sha1"
 
   config.vm.network "private_network", ip: "192.168.56.14"
   config.vm.hostname = "local14.sevenval-fit.com"
 
-  config.vm.synced_folder "projects", "/var/lib/fit14/projects", :mount_options => ["uid=1001,gid=1001"]
-  config.vm.synced_folder "logs", "/var/log/fit14/", :mount_options => ["uid=1001,gid=1001"]
+  config.vm.synced_folder "projects", "/var/lib/fit14/projects", :mount_options => ["uid=1000,gid=1000"]
+  config.vm.synced_folder "logs", "/var/log/fit14/", :mount_options => ["uid=1000,gid=1000"]
 
   config.vm.provision :shell, :path => "setup/start-services.sh", run: "always"
 
