@@ -11,8 +11,7 @@ source functions.sh
 trap _shutdown EXIT
 
 # ====================================================================================================
-
-vagrant ssh -c 'sudo su -c "source /etc/profile.d/fit14.sh; bash /vagrant/setup/check_internal.sh"' 2>&1 | grep -v 'Connection to 127.0.0.1 closed.'
+vagrant ssh -c 'sudo su -c "source /etc/profile.d/fit14.sh; NO_VERSION_CHECK='${NO_VERSION_CHECK}' bash /vagrant/setup/check_internal.sh"' 2>&1 | grep -v 'Connection to 127.0.0.1 closed.'
 failed=${PIPESTATUS[0]}
 
 # ====================================================================================================
