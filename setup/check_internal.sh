@@ -77,7 +77,7 @@ do
 	fi
 
 	sMessage="Owner of '$sConfFile' is 'fit/fit-data'"
-	if [ `stat -c "%U:%G" /opt/sevenval/fit14/conf/$sConfFile` = "fit:fit-data" ]; then
+	if [ `stat -c "%u:%g" /opt/sevenval/fit14/conf/$sConfFile` = "1000:1000" ]; then
 		_printLine "$sMessage" 1
 	else
 		_printLine "$sMessage" 0
@@ -177,13 +177,17 @@ fi
 
 # ====================================================================================================
 
-EXP_VERSION=14.1.2
+EXP_VERSION=14.1.3
 FIT_VERSION=`sudo /opt/sevenval/fit14/bin/fitadmin -v | head -n1`
 
 sMessage="FIT Version '$EXP_VERSION' (is: $FIT_VERSION)"
 
-echo "$FIT_VERSION" | grep -q -P "Sevenval FIT Server ${EXP_VERSION}(-\d){0,2}, Build:" && \
-	_printLine "$sMessage" 1 || _printLine "$sMessage" 0
+if [ -z "${NO_VERSION_CHECK}" ]; then
+	echo "$FIT_VERSION" | grep -q -P "Sevenval FIT Server ${EXP_VERSION}(-\d){0,2}, Build:" && \
+		_printLine "$sMessage" 1 || _printLine "$sMessage" 0
+else
+	_printLine "  SKIPPED $sMessage" 1
+fi
 
 # ====================================================================================================
 
