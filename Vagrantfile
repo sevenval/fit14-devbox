@@ -19,9 +19,9 @@ end
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-config.vm.box = "vagrant-fit14-devbox-14.1.5-0"
-config.vm.box_url = "https://#{download_creds}download.sevenval-fit.com/fit-devbox/14/images/vagrant-fit14-devbox-14.1.5-0.box"
-config.vm.box_download_checksum = "dd1c38d868876a3bfe5c765bba6ddca30536ea5d"
+config.vm.box = "vagrant-fit14-devbox-14.2.0-c1-0"
+config.vm.box_url = "https://#{download_creds}download.sevenval-fit.com/fit-devbox/14/images/vagrant-fit14-devbox-14.2.0-c1-0.box"
+config.vm.box_download_checksum = "f447168efaac382a46e2da1226dff282177bd2c8"
 config.vm.box_download_checksum_type = "sha1"
 
   config.vm.network "private_network", ip: "192.168.56.14"
