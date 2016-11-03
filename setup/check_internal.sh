@@ -177,7 +177,11 @@ fi
 
 # ====================================================================================================
 
+<<<<<<< HEAD
 EXP_VERSION=14.5.2
+=======
+EXP_VERSION=14.5.3
+>>>>>>> master
 FIT_VERSION=`sudo /opt/sevenval/fit14/bin/fitadmin -v | head -n1`
 
 sMessage="FIT Version '$EXP_VERSION' (is: $FIT_VERSION)"
