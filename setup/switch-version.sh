@@ -3,8 +3,9 @@
 if [ -n "$1" ]; then
 	VERSION=$1
 else
-	read -p '(b)eta (s)table? ' VERSION
+	read -p '(c)andidate (b)eta (s)table? ' VERSION
 	case "$VERSION" in
+	"c") VERSION=candidate ;;
 	"b") VERSION=beta ;;
 	"s") VERSION=stable ;;
 	*) echo "b/s" >&2; exit 1;;
