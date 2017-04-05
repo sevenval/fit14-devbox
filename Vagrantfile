@@ -22,9 +22,9 @@ end
 
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-config.vm.box = "vagrant-fit14-devbox-14.6.2-0"
-config.vm.box_url = "https://#{download_creds}download.sevenval-fit.com/fit-devbox/14/images/vagrant-fit14-devbox-14.6.2-0.box"
-config.vm.box_download_checksum = "4834786852b0735ac74f5b3cfce59ea505e02456"
+config.vm.box = "vagrant-fit14-devbox-14.6.3-0"
+config.vm.box_url = "https://#{download_creds}download.sevenval-fit.com/fit-devbox/14/images/vagrant-fit14-devbox-14.6.3-0.box"
+config.vm.box_download_checksum = "8f7acb6a77ecac630732621e29a891ae7c95ba98"
 config.vm.box_download_checksum_type = "sha1"
 
   # disable plugin because image contains no build tools and kernel headers
