@@ -8,7 +8,7 @@ if [ -n "$CREDENTIALS" ]; then
 	CREDENTIALS="${CREDENTIALS}@"
 fi
 
-if ! curl -m 5 -s -f "https://${CREDENTIALS}download.sevenval-fit.com/FIT_Server_Beta/14/check-credentials?version=${VERSION}" >/dev/null; then
+if ! curl -m 15 -s -f "https://${CREDENTIALS}download.sevenval-fit.com/FIT_Server_Beta/14/check-credentials?version=${VERSION}" >/dev/null; then
 	echo -e "Sorry, you don't have credentials to switch builds.\n\nConfigure your credentials like this:\n\$ echo 'user:pass' > ~/fit14-devbox/credentials\n\nContact Sevenval if you don't have download server access, yet."
 	exit 126
 fi
