@@ -8,8 +8,18 @@ if [ -n "$CREDENTIALS" ]; then
 	CREDENTIALS="${CREDENTIALS}@"
 fi
 
-if ! curl -m 15 -s -f "https://${CREDENTIALS}download.sevenval-fit.com/FIT_Server_Beta/14/check-credentials?version=${VERSION}" >/dev/null; then
+tmpfile=`mktemp`
+function cleanup() {
+    rm -f "$tmpfile"
+}
+trap "cleanup" EXIT
+
+if ! httpcode=`curl --write-out '%{http_code}' -m 15 -Ss -f "https://${CREDENTIALS}download.sevenval-fit.com/FIT_Server_Beta/14/check-credentials?version=${VERSION}" -o /dev/null 2> $tmpfile`; then
 	echo -e "Sorry, you don't have credentials to switch builds.\n\nConfigure your credentials like this:\n\$ echo 'user:pass' > ~/fit14-devbox/credentials\n\nContact Sevenval if you don't have download server access, yet."
+	if [ "$httpcode" != 401 ]; then
+		echo An error occurred: $httpcode
+		cat $tmpfile
+	fi
 	exit 126
 fi
 
@@ -17,7 +27,6 @@ set -e
 
 trap 'echo "ERROR: could not install new FIT packages. try switching back to stable by running
 	switch-version.sh stable"' SIGINT SIGTERM
-
 
 echo "switching FIT installation to $VERSION"
 REMOVE="`rpm -qa | grep ^fit14`" || true
